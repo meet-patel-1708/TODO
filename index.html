@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Todo App</title>
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f4f4;
+            text-align:center;
+            margin-top:50px;
+        }
+
+        .container{
+            width:350px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        input{
+            width:70%;
+            padding:8px;
+        }
+
+        button{
+            padding:8px 12px;
+            background:green;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+
+        ul{
+            list-style:none;
+            padding:0;
+        }
+
+        li{
+            padding:8px;
+            margin-top:5px;
+            background:#eee;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .delete{
+            background:red;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>My Todo List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+
+function addTask(){
+    let task = document.getElementById("taskInput").value;
+
+    if(task === ""){
+        alert("Enter a task");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.innerHTML = task;
+
+    let delBtn = document.createElement("button");
+    delBtn.innerHTML = "Delete";
+    delBtn.className = "delete";
+
+    delBtn.onclick = function(){
+        li.remove();
+    };
+
+    li.appendChild(delBtn);
+
+    document.getElementById("taskList").appendChild(li);
+
+    document.getElementById("taskInput").value="";
+}
+
+</script>
+
+</body>
+</html>
